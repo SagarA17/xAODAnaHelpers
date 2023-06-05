@@ -22,4 +22,3 @@ install( FILES ${CMAKE_BINARY_DIR}/${ATLAS_PLATFORM}/env_setup.sh
 
 # Set up the usage of CPack:
 atlas_cpack_setup()
-set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
