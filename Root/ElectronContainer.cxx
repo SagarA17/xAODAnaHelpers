@@ -41,6 +41,8 @@ ElectronContainer::ElectronContainer(const std::string& name, const std::string&
     m_topoetcone20                           = new std::vector<float> ();
     m_topoetcone30                           = new std::vector<float> ();
     m_topoetcone40                           = new std::vector<float> ();
+    m_ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000 = new std::vector<float> ();
+  
   }
 
   if ( m_infoSwitch.m_PID ) {
@@ -161,6 +163,7 @@ ElectronContainer::~ElectronContainer()
     delete m_topoetcone20                           ;
     delete m_topoetcone30                           ;
     delete m_topoetcone40                           ;
+    delete m_ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000;
   }
 
   if ( m_infoSwitch.m_PID ) {
@@ -281,6 +284,8 @@ void ElectronContainer::setTree(TTree *tree)
     connectBranch<float>(tree, "topoetcone20",     &m_topoetcone20);
     connectBranch<float>(tree, "topoetcone30",     &m_topoetcone30);
     connectBranch<float>(tree, "topoetcone40",     &m_topoetcone40);
+    connectBranch<float>(tree, "ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000", &m_ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000);
+  
   }
 
   if ( m_infoSwitch.m_PID ) {
@@ -400,6 +405,7 @@ void ElectronContainer::updateParticle(uint idx, Electron& elec)
     elec.topoetcone20                             =     m_topoetcone20                               ->at(idx);
     elec.topoetcone30                             =     m_topoetcone30                               ->at(idx);
     elec.topoetcone40                             =     m_topoetcone40                               ->at(idx);
+    elec.ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000 = m_ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000 -> at(idx); 
   }
 
   // quality
@@ -519,6 +525,8 @@ void ElectronContainer::setBranches(TTree *tree)
     setBranch<float>(tree, "topoetcone20",     m_topoetcone20);
     setBranch<float>(tree, "topoetcone30",     m_topoetcone30);
     setBranch<float>(tree, "topoetcone40",     m_topoetcone40);
+    setBranch<float>(tree, "ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000", m_ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000);
+
   }
 
   if ( m_infoSwitch.m_PID ) {
@@ -634,6 +642,8 @@ void ElectronContainer::clear()
     m_topoetcone20                           ->clear();
     m_topoetcone30                           ->clear();
     m_topoetcone40                           ->clear();
+    m_ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000 ->clear();
+
   }
 
   if ( m_infoSwitch.m_PID ) {
@@ -787,6 +797,8 @@ void ElectronContainer::FillElectron( const xAOD::IParticle* particle, const xAO
     m_topoetcone20->push_back( elec->isolation( xAOD::Iso::topoetcone20 )/m_units );
     m_topoetcone30->push_back( elec->isolation( xAOD::Iso::topoetcone30 )/m_units );
     m_topoetcone40->push_back( elec->isolation( xAOD::Iso::topoetcone40 )/m_units );
+    m_ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000->push_back( elec->isolation( xAOD::Iso::ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000)/m_units );
+  
   }
 
   if ( m_infoSwitch.m_PID ) {
