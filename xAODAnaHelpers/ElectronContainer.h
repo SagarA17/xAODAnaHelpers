@@ -55,6 +55,7 @@ namespace xAH {
       std::vector<float>* m_topoetcone20;
       std::vector<float>* m_topoetcone30;
       std::vector<float>* m_topoetcone40;
+      std::vector<float>* m_ptvarcone30_Nonprompt_All_MaxWeightTTVALooseCone_pt1000;
 
       // PID
       std::map< std::string, std::vector< int >* >* m_PID;
