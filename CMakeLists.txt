@@ -28,7 +28,7 @@ atlas_add_root_dictionary ( xAODAnaHelpersLib xAODAnaHelpersDictSource
 )
 
 # build a shared library
-atlas_add_library( xAODAnaHelpersLib */BasicEventSelection.* */Algorithm.* */HelperFunctions.* ${xAODAnaHelpersDictSource}
+atlas_add_library( xAODAnaHelpersLib xAODAnaHelpers/*.h Root/*.h Root/*.cxx ${xAODAnaHelpersDictSource}
                    PUBLIC_HEADERS xAODAnaHelpers
                    INCLUDE_DIRS ${ROOT_INCLUDE_DIRS}
                    LINK_LIBRARIES ${ROOT_LIBRARIES} EventLoop xAODBase xAODRootAccess
@@ -56,7 +56,6 @@ atlas_add_library( xAODAnaHelpersLib */BasicEventSelection.* */Algorithm.* */Hel
 # Install files from the package:
 atlas_install_python_modules( python/*.py )
 atlas_install_scripts( scripts/*.py )
-atlas_install_data( data/* )
 
 
 ### Install python packages

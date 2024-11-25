@@ -1,7 +1,0 @@
-doxygen/xml/*.x*
-_build
-_static
-_templates
-html/
-latex/
-api/

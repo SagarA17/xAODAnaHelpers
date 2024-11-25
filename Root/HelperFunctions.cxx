@@ -77,7 +77,7 @@ int HelperFunctions::getPrimaryVertexLocation(const xAOD::VertexContainer* verte
   return -1;
 }
 
-bool HelperFunctions::applyPrimaryVertexSelection( const xAOD::JetContainer* jets, const xAOD::VertexContainer* vertices )
+bool HelperFunctions::applyPrimaryVertexSelection( const xAOD::JetContainer*, const xAOD::VertexContainer* )
 {
 
   // if(jets->empty()) { return true; }
@@ -365,7 +365,7 @@ std::vector< CP::SystematicSet > HelperFunctions::getListofSystematics(const CP:
 
   // loop over input set
   //
-  for ( const auto syst : inSysts ) {
+  for ( const auto & syst : inSysts ) {
 
     msg << MSG::DEBUG << syst.name() << endmsg;
 
@@ -377,7 +377,7 @@ std::vector< CP::SystematicSet > HelperFunctions::getListofSystematics(const CP:
     if ( systNames.find("All") == std::string::npos ) {
       // do systNames vector matching
       bool valid = false;
-      for ( const auto s : systNamesList ) {
+      for ( const auto & s : systNamesList ) {
         if ( s == syst.basename() ) {
           valid = true;
           break;
