@@ -19,6 +19,7 @@ jobs:
         release_type:
           - analysisbase
         release_version:
+          - 25.2.32
           - 25.2.31
 
     steps:
@@ -48,38 +49,3 @@ jobs:
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
-  docs:
-
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.9]
-
-    steps:
-    - uses: actions/checkout@master
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install linux dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get -yqq --no-install-suggests --no-install-recommends install doxygen doxygen-doc doxygen-gui doxygen-latex graphviz
-    - name: Install python dependencies
-      run: |
-        python -m pip install --upgrade pip setuptools wheel
-        python -m pip install --ignore-installed -U -q -r docs/requirements.txt
-        pip list
-    - name: Build docs
-      run: |
-        cd docs && make html && cd ../
-        touch docs/_build/html/.nojekyll
-    - name: Deploy docs to GitHub Pages
-      if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
-      uses: crazy-max/ghaction-github-pages@v1.0.1
-      with:
-        target_branch: gh-pages
-        build_dir: docs/_build/html
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
