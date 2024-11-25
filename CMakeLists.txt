@@ -28,7 +28,7 @@ atlas_add_root_dictionary ( xAODAnaHelpersLib xAODAnaHelpersDictSource
 )
 
 # build a shared library
-atlas_add_library( xAODAnaHelpersLib xAODAnaHelpers/*.h Root/*.h Root/*.cxx ${xAODAnaHelpersDictSource}
+atlas_add_library( xAODAnaHelpersLib */BasicEventSelection.* */Algorithm.* */HelperFunctions.* ${xAODAnaHelpersDictSource}
                    PUBLIC_HEADERS xAODAnaHelpers
                    INCLUDE_DIRS ${ROOT_INCLUDE_DIRS}
                    LINK_LIBRARIES ${ROOT_LIBRARIES} EventLoop xAODBase xAODRootAccess
